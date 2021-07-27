@@ -2,17 +2,19 @@ from django.shortcuts     import render
 from django.views.generic import ListView
 from django.views.generic import DetailView
 
-from .models              import Post
+from .models              import Post, Category
 
-# def index(request):
-#     posts = Post.objects.all().order_by('-pk')
-#     return render(request, 'blog/index.html', {
-#         'posts': posts,
-#         }
-#     )
+class CategoryList(ListView):
+    model = Category
+    template_name = 'blog/category_list.html'
+    ordering = '-pk'
+
 class PostList(ListView):
     model = Post
     ordering = '-pk'
+
+    def get_queryset(self):
+        return Post.objects.filter(category_id=self.kwargs['pk'])
 
 # def single_post_page(request, pk):
 #     post = Post.objects.get(pk=pk)

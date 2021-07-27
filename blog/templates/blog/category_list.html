@@ -17,18 +17,25 @@
     <!-- Header -->
     <header class="bg-primary text-center py-5 mb-4">
       <div class="container">
-        <h1 class="fw-light text-white">게시글 목록화면이다아아아아</h1>
+        <h1 class="fw-light text-white">카테고리 목록화면이다아아아아</h1>
       </div>
     </header>
 
     <!-- Page Content -->
     <div class="container">
       <div class="row">
-        <div class="list-group">
-          {% for post in post_list %}
-          <a href="#" class="list-group-item list-group-item-action">{{ post.title }}</a>
-          {% endfor %}
+
+        {% for category in category_list %}
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-0 shadow">
+            <img src="https://source.unsplash.com/9UVmlIb0wJU/500x350" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-0">{{ category.name }}</h5>
+            </div>
+          </div>
         </div>
+        {% endfor %}
+
       </div> <!-- /.row -->
     </div> <!-- /.container -->
 
