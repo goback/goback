@@ -10,6 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
 
     <title>메인화면</title>
   </head>
@@ -30,7 +31,10 @@
           <div class="card border-0 shadow">
             <a href="{{ category.get_absolute_url }}">
             <!-- <a href="{% url 'blog:post_list' category.pk %}"> -->
-              <img src="https://source.unsplash.com/9UVmlIb0wJU/500x350" class="card-img-top" alt="...">
+              {% if category.title_image %}
+              <img src="{{ category.title_image.url }}" class="card-img-top" alt="{{ category }} title image">  
+              {% endif %}
+              <!-- <img src="https://source.unsplash.com/9UVmlIb0wJU/500x350" class="card-img-top" alt="..."> -->
               <div class="card-body text-center">
                 <h5 class="card-title mb-0">{{ category.name }}</h5>
               </div>

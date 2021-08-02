@@ -18,7 +18,8 @@ class Post(models.Model):
         return resolve_url('blog:post_detail', self.pk)
 
 class Category(models.Model):
-    name = models.CharField(max_length=45, unique=True)
+    name        = models.CharField(max_length=45, unique=True)
+    title_image = models.ImageField(upload_to='blog/images/category/%Y/%m/%d/', blank=True)
 
     class Meta:
         db_table            = 'categories'
