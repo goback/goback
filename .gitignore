@@ -276,3 +276,4 @@ tags
 # my_settings.py
 *.csv
 migrations/
+_media/
