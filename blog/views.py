@@ -5,21 +5,21 @@ from django.views.generic import DetailView
 from .models              import Post, Category
 
 class CategoryList(ListView):
-    model = Category
+    model         = Category
     template_name = 'blog/category_list.html'
-    ordering = '-pk'
+    ordering      = '-pk'
 
 class PostList(ListView):
-    model = Post
+    model    = Post
     ordering = '-pk'
 
     def get_queryset(self):
-        return Post.objects.filter(category_id=self.kwargs['pk'])
+        return Post.objects.filter(category=self.kwargs['pk'])
 
 # def single_post_page(request, pk):
 #     post = Post.objects.get(pk=pk)
 
-#     return render(request, 'blog/single_post_page.html', {
+#     return render(request, 'blog/post_detail.html', {
 #         'post' : post,
 #     })
 class PostDetail(DetailView):
