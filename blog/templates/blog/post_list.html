@@ -1,41 +1,14 @@
-<!doctype html>
-<html lang="ko">
+{% extends 'blog/base.html' %}
 
-<!-- ./static 폴더의 모든 내용을 읽어옴 -->
-{% load static %}
+{% block head_title %}
+  {{ category_name }}
+{% endblock head_title %}
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
-    <title>메인화면</title>
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="bg-primary text-center py-5 mb-4">
-      <div class="container">
-        <h1 class="fw-light text-white">게시글 목록화면이다아아아아</h1>
-      </div>
-    </header>
-
-    <!-- Page Content -->
-    <div class="container">
-      <div class="row">
-        <div class="list-group">
-          {% for post in post_list %}
-          <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{ post }}</a>
-          <!-- <a href="{% url 'blog:post_detail' post.pk %}" class="list-group-item list-group-item-action">{{ post }}</a> -->
-          {% endfor %}
-        </div>
-      </div> <!-- /.row -->
-    </div> <!-- /.container -->
-
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="{% static 'blog/js/jquery-3.6.0.min.js' %}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="{% static 'blog/js/bootstrap.bundle.min.js' %}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
-  </body>
-</html>
+{% block main_area %}
+<div class="list-group">
+  {% for post in post_list %}
+  <a href="{{ post.get_absolute_url }}" class="list-group-item list-group-item-action">{{ post }}</a>
+  <!-- <a href="{% url 'blog:post_detail' post.pk %}" class="list-group-item list-group-item-action">{{ post }}</a> -->
+  {% endfor %}
+</div>
+{% endblock main_area %}
