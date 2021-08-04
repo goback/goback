@@ -1,54 +1,24 @@
-<!doctype html>
-<html lang="ko">
+{% extends 'blog/base.html' %}
 
-<!-- ./static 폴더의 모든 내용을 읽어옴 -->
-{% load static %}
+{% block head_title %}
+카테고리 목록
+{% endblock head_title %}
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
-
-    <title>메인화면</title>
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="bg-primary text-center py-5 mb-4">
-      <div class="container">
-        <h1 class="fw-light text-white">카테고리 목록화면이다아아아아</h1>
+{% block main_area %}
+{% for category in category_list %}
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card border-0 shadow">
+    <a href="{{ category.get_absolute_url }}">
+    <!-- <a href="{% url 'blog:post_list' category.pk %}"> -->
+      {% if category.title_image %}
+      <img src="{{ category.title_image.url }}" class="card-img-top" alt="{{ category }} title image">  
+      {% endif %}
+      <!-- <img src="https://source.unsplash.com/9UVmlIb0wJU/500x350" class="card-img-top" alt="..."> -->
+      <div class="card-body text-center">
+        <h5 class="card-title mb-0">{{ category }}</h5>
       </div>
-    </header>
-
-    <!-- Page Content -->
-    <div class="container">
-      <div class="row">
-
-        {% for category in category_list %}
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-0 shadow">
-            <a href="{{ category.get_absolute_url }}">
-            <!-- <a href="{% url 'blog:post_list' category.pk %}"> -->
-              {% if category.title_image %}
-              <img src="{{ category.title_image.url }}" class="card-img-top" alt="{{ category }} title image">  
-              {% endif %}
-              <!-- <img src="https://source.unsplash.com/9UVmlIb0wJU/500x350" class="card-img-top" alt="..."> -->
-              <div class="card-body text-center">
-                <h5 class="card-title mb-0">{{ category }}</h5>
-              </div>
-            </a>
-          </div>
-        </div>
-        {% endfor %}
-
-      </div> <!-- /.row -->
-    </div> <!-- /.container -->
-
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="{% static 'blog/js/jquery-3.6.0.min.js' %}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="{% static 'blog/js/bootstrap.bundle.min.js' %}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
-  </body>
-</html>
+    </a>
+  </div>
+</div>
+{% endfor %}
+{% endblock main_area %}

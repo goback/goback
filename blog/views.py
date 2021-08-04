@@ -13,8 +13,11 @@ class PostList(ListView):
     model    = Post
     ordering = '-pk'
 
-    def get_queryset(self):
-        return Post.objects.filter(category=self.kwargs['pk'])
+    def get_context_data(self, **kwargs):
+        context = super(PostList, self).get_context_data()
+        context['post_list'] = Post.objects.filter(category=self.kwargs['pk'])
+        context['category_name'] = Category.objects.get(pk=self.kwargs['pk'])
+        return context
 
 # def single_post_page(request, pk):
 #     post = Post.objects.get(pk=pk)

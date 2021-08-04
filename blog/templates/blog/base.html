@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+
+<!-- ./static 폴더의 모든 내용을 읽어옴 -->
+{% load static %}
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+
+    <title>메인화면</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="bg-primary text-center py-5 mb-4">
+      <div class="container">
+        <h1 class="fw-light text-white">
+        {% block head_title %}
+        {% endblock head_title %}
+        </h1>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        {% block main_area %}
+        {% endblock main_area %}
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="{% static 'blog/js/jquery-3.6.0.min.js' %}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="{% static 'blog/js/bootstrap.bundle.min.js' %}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+  </body>
+</html>
