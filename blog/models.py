@@ -17,6 +17,20 @@ class Post(models.Model):
     def get_absolute_url(self):
         return resolve_url('blog:post_detail', self.pk)
 
+class Comment(models.Model):
+    post       = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author     = models.CharField(max_length=50)
+    content    = models.TextField()
+    password   = models.CharField(max_length=300)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'comments'
+
+    def __str__(self):
+        return f'{self.content}'
+
 class Category(models.Model):
     name        = models.CharField(max_length=45, unique=True)
     title_image = models.ImageField(upload_to='blog/images/category/%Y/%m/%d/', blank=True)
